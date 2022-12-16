@@ -1,10 +1,13 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 
 const app = express();
-const port = 5001;
+const PORT = 5002;
+
+app.listen(PORT, () => {
+  console.log("listening on port ", PORT);
+});
 
 app.use(express.static("server/public"));
-
-app.listen(port, () => {
-  console.log("listening on port ", port);
-});
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
