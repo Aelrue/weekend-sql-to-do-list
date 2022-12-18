@@ -4,10 +4,12 @@ const router = express.Router();
 const pool = require("../modules/pool");
 
 router.get("/", (req, res) => {
-  res.send(toDos);
+  console.log("In router!");
+  res.send("OK");
 });
 
 router.post("/", (req, res) => {
+  console.log("in .post");
   toDos.push(req.body);
   res.sendStatus(200);
 });

@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 // router to respond to requests from URL
 const listRouter = require("./routes/list_router");
 
-app.use("/", listRouter);
+app.use("/list", listRouter);
 
 const PORT = 5002;
 app.listen(PORT, () => {

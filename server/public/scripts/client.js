@@ -2,9 +2,10 @@ $(document).ready(onReady);
 // onReady function to handle submit, delete, complete task
 function onReady() {
   console.log("client sourced!");
-  getList();
   $("#addTask").on("click", checkOff);
   $("#deleteTask").on("click", deleteList);
+
+  getList();
 }
 
 // Use "PUT" request to update resource (check it off)
@@ -16,6 +17,12 @@ function putList() {
 // Append that data to the DOM
 function getList() {
   console.log("getList firing off");
+  $.ajax({
+    type: "GET",
+    url: "/list",
+  }).then(function (response) {
+    console.log("back from server", response);
+  });
 }
 
 // Delete resource ("DELETE")
@@ -26,7 +33,7 @@ function deleteList() {
   const id = $(this).parent().parent().data("");
   $.ajax({
     type: "DELETE",
-    url: `/toDoCollection/${id}`,
+    url: `/list_router/${id}`,
   })
     .then(function () {
       getList();
@@ -51,7 +58,7 @@ function checkOff() {
   });
 }
 
-// get buttom clicks working first
+// get button clicks working first
 // client
 // get stuff popping up on the DOM, functions
 // then do requests

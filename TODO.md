@@ -2,18 +2,26 @@
 
 # Base Tasks
 
-- [] Set up file structure
-  - [] folders: server, public, scripts, styles, vendors, routes
-  - [] files: index.html, client.js, server.js, .gitignore, task_router.js, style.css
-- [] Add jQuery
-- [] npm init
-- [] npm install express
-- [] npm install pg
-- [] Add start command to package.json
-- [] Wire files together so theyre chattin
-- [] Set up database called weekend-to-do-app
-- [] Create db table
-  - []
-- [] Add database.sql file to file structure
+- [x] Set up file structure
+  - [x] folders: server, public, scripts, styles, vendors, routes
+  - [x] files: index.html, client.js, server.js, .gitignore, task_router.js, style.css
+- [x] Add jQuery
+- [x] npm init
+- [x] npm install express
+- [x] npm install pg
+- [x] Add start command to package.json
+- [x] Wire files together so theyre chattin
+- [x] Set up database called weekend-to-do-app
+- [x] Create db table
+  - [x] id
+  - [x] task
+  - [x] isDone
+- [x] Add database.sql file to file structure
 - [] Create inputs for user to enter a task
   - [] add a submit button
+- [] Submit should post the task to the server and add it to the database
+- [] Render list on the DOM
+- [] Add done and delete buttons to each list item
+- [] Clicking 'done' should update in db and show completed on DOM (i.e strike through, greyed out, whatnot) hint: look at text-decoration
+- [] Clicking 'delete' should remove it from the db and DOM
+- [] Style it uppp
