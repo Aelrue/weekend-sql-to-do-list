@@ -1,8 +1,7 @@
 // cannot use app again, need to use router
 const express = require("express");
 const router = express.Router();
-
-let toDos = [];
+const pool = require("../modules/pool");
 
 router.get("/", (req, res) => {
   res.send(toDos);
