@@ -2,15 +2,33 @@ $(document).ready(onReady);
 // onReady function to handle submit, delete, complete task
 function onReady() {
   console.log("client sourced!");
-  $("#addTask").on("click", addTask);
-  $("#deleteTask").on("click", deleteList);
+  $(".addTask").on("click", addTask);
+  $(".deleteTask").on("click", deleteList);
 
   getList();
 }
 
-// Use "PUT" request to update resource (check it off)
-function checkOff() {
-  console.log("putList firing off");
+// "POST" to create a new resource
+// Call the "GET" again to update DOM
+function addTask() {
+  console.log("added!");
+  let listEntry = {
+    task: $("#task").val(),
+  };
+  console.log("through listEntry", listEntry);
+  $.ajax({
+    type: "POST",
+    url: "/list",
+    data: listEntry,
+  })
+    .then(function (response) {
+      console.log("post request made,", response);
+      $("#listItems").val("");
+      getList();
+    })
+    .catch((error) => {
+      console.log("Error adding task", error);
+    });
 }
 
 // Get list data from server ("GET")
@@ -28,13 +46,22 @@ function getList() {
       <td>${response[i].tasks}</td>
       <td>${response[i].isDone}</td>
       <td>
-      <button id="completeTask"></button>
-      <button id="deleteTask"></button>
+      <button name="completeTask" class="completeTask">
+      <i class="far fa-check-circle" style="font-size: 24px"></i>
+    </button>
+       <button name="deleteTask" class="deleteTask">
+      <i class="far fa-trash-alt" style="font-size: 24px"></i>
+    </button>
       </td>
       </tr>
       `);
     }
   });
+}
+
+// Use "PUT" request to update resource (check it off)
+function checkOff() {
+  console.log("putList firing off");
 }
 
 // Delete resource ("DELETE")
@@ -47,33 +74,13 @@ function deleteList() {
     type: "DELETE",
     url: `/list_router/${id}`,
   })
-    .then(function () {
+    .then(function (response) {
+      console.log("back from delete", response);
       getList();
     })
     .catch(function (error) {
       console.log("error with deleting ", error);
     });
-}
-
-// "POST" to create a new resource
-// Call the "GET" again to update DOM
-function addTask() {
-  console.log("added!");
-  let listEntry = {
-    task: $("#task").val(),
-    isDone: false,
-    // hardcode isDone
-  };
-  console.log("through listEntry", listEntry);
-  $.ajax({
-    type: "POST",
-    url: "/list",
-    data: listEntry,
-  }).then(function (response) {
-    console.log("post request made, response");
-    $("#listItems").val("");
-    getList();
-  });
 }
 
 // get button clicks working first
