@@ -17,8 +17,8 @@
   - [x] task
   - [x] isDone
 - [x] Add database.sql file to file structure
-- [] Create inputs for user to enter a task
-  - [] add a submit button
+- [x] Create inputs for user to enter a task
+  - [x] add a submit button
 - [] Submit should post the task to the server and add it to the database
 - [] Render list on the DOM
 - [] Add done and delete buttons to each list item

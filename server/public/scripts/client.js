@@ -2,14 +2,14 @@ $(document).ready(onReady);
 // onReady function to handle submit, delete, complete task
 function onReady() {
   console.log("client sourced!");
-  $("#addTask").on("click", checkOff);
+  $("#addTask").on("click", addTask);
   $("#deleteTask").on("click", deleteList);
 
   getList();
 }
 
 // Use "PUT" request to update resource (check it off)
-function putList() {
+function checkOff() {
   console.log("putList firing off");
 }
 
@@ -22,6 +22,18 @@ function getList() {
     url: "/list",
   }).then(function (response) {
     console.log("back from server", response);
+    for (let i = 0; i < response.length; i++) {
+      $("#listItems").append(`
+      <tr data-id=${response[i].id}>
+      <td>${response[i].tasks}</td>
+      <td>${response[i].isDone}</td>
+      <td>
+      <button id="completeTask"></button>
+      <button id="deleteTask"></button>
+      </td>
+      </tr>
+      `);
+    }
   });
 }
 
@@ -45,14 +57,20 @@ function deleteList() {
 
 // "POST" to create a new resource
 // Call the "GET" again to update DOM
-function checkOff() {
-  console.log("checked off!");
-  let listEntry = $("#listItems").val();
+function addTask() {
+  console.log("added!");
+  let listEntry = {
+    task: $("#task").val(),
+    isDone: false,
+    // hardcode isDone
+  };
+  console.log("through listEntry", listEntry);
   $.ajax({
     type: "POST",
-    url: "/listLibrary",
+    url: "/list",
     data: listEntry,
   }).then(function (response) {
+    console.log("post request made, response");
     $("#listItems").val("");
     getList();
   });
