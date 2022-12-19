@@ -7,10 +7,11 @@ router.get("/", (req, res) => {
   console.log("In router!");
   // res.send("OK");
   let queryText = 'SELECT * from "tasks_list";';
+
   pool
     .query(queryText)
     .then((result) => {
-      console.log("results from db", result);
+      // console.log("results from db", result);
       res.send(result.rows);
     })
     .catch((error) => {
@@ -20,20 +21,35 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  console.log("in .post");
+  // console.log("in .post");
   const newListItem = req.body;
-  console.log("in newListItem", newListItem);
+  // console.log("in newListItem", newListItem);
   const queryText = `INSERT INTO "tasks_list"(tasks)
   VALUES ($1);`;
 
   pool
     .query(queryText, [newListItem.task])
     .then((result) => {
-      console.log("result", result);
+      // console.log("result", result);
       res.sendStatus(201);
     })
     .catch((error) => {
       console.log("error making insert query", error);
+      res.sendStatus(500);
+    });
+});
+
+router.delete("/:id", (req, res) => {
+  console.log("hello from delete request");
+  const queryText = `DELETE from "tasks_list" WHERE id = ${req.params.id};`;
+  pool
+    .query(queryText)
+    .then((result) => {
+      console.log(result);
+      res.sendStatus(202);
+    })
+    .catch((error) => {
+      console.log("error making query", error);
       res.sendStatus(500);
     });
 });

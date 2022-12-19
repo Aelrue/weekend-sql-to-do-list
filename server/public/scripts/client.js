@@ -3,7 +3,7 @@ $(document).ready(onReady);
 function onReady() {
   console.log("client sourced!");
   $(".addTask").on("click", addTask);
-  $(".deleteTask").on("click", deleteList);
+  $(document).on("click", ".deleteTask", deleteTask);
 
   getList();
 }
@@ -35,6 +35,7 @@ function addTask() {
 // Append that data to the DOM
 function getList() {
   console.log("getList firing off");
+  $("#listItems").empty();
   $.ajax({
     type: "GET",
     url: "/list",
@@ -43,16 +44,16 @@ function getList() {
     for (let i = 0; i < response.length; i++) {
       $("#listItems").append(`
       <tr data-id=${response[i].id}>
-      <td>${response[i].tasks}</td>
-      <td>${response[i].isDone}</td>
-      <td>
-      <button name="completeTask" class="completeTask">
-      <i class="far fa-check-circle" style="font-size: 24px"></i>
-    </button>
-       <button name="deleteTask" class="deleteTask">
-      <i class="far fa-trash-alt" style="font-size: 24px"></i>
-    </button>
-      </td>
+        <td>${response[i].tasks}</td>
+        <td>${response[i].isDone}</td>
+        <td>
+        <button name="completeTask" class="completeTask">
+          <i class="far fa-check-circle" style="font-size: 24px"></i>
+        </button>
+        <button name="deleteTask" class="deleteTask">
+          <i class="far fa-trash-alt" style="font-size: 24px"></i>
+        </button>
+        </td>
       </tr>
       `);
     }
@@ -67,12 +68,14 @@ function checkOff() {
 // Delete resource ("DELETE")
 // Call the "GET" again to update DOM
 
-function deleteList() {
-  console.log("deleteList firing off");
-  const id = $(this).parent().parent().data("");
+function deleteTask() {
+  console.log("deleteTask firing off");
+  const id = $(this).parent().parent().data("id");
+  console.log(id);
+
   $.ajax({
     type: "DELETE",
-    url: `/list_router/${id}`,
+    url: `/list/${id}`,
   })
     .then(function (response) {
       console.log("back from delete", response);
