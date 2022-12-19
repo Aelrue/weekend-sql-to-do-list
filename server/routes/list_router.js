@@ -22,9 +22,12 @@ router.get("/", (req, res) => {
 router.post("/", (req, res) => {
   console.log("in .post");
   const newListItem = req.body;
-  const queryText = "";
+  console.log("in newListItem", newListItem);
+  const queryText = `INSERT INTO "tasks_list"(tasks)
+  VALUES ($1);`;
+
   pool
-    .query(queryText)
+    .query(queryText, [newListItem.task])
     .then((result) => {
       console.log("result", result);
       res.sendStatus(201);
