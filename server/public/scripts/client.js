@@ -24,7 +24,7 @@ function addTask() {
   })
     .then(function (response) {
       console.log("post request made,", response);
-      $("#listItems").val("");
+      $("#task").val("");
       getList();
     })
     .catch((error) => {
@@ -42,11 +42,16 @@ function getList() {
     url: "/list",
   }).then(function (response) {
     console.log("back from server", response);
+
     for (let i = 0; i < response.length; i++) {
+      let rowClass = "";
+      if (response[i].isDone === true) {
+        rowClass = "completed";
+      }
+      // <td>${response[i].isDone}</td>
       $("#listItems").append(`
       <tr data-id=${response[i].id}>
-        <td>${response[i].tasks}</td>
-        <td>${response[i].isDone}</td>
+        <td class="${rowClass}">${response[i].tasks}</td>
         <td>
         <button name="completeTask" class="completeTask">
           <i class="far fa-check-circle" style="font-size: 24px"></i>

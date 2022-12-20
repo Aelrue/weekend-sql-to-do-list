@@ -6,12 +6,12 @@ const pool = require("../modules/pool");
 router.get("/", (req, res) => {
   console.log("In router!");
   // res.send("OK");
-  let queryText = 'SELECT * from "tasks_list";';
+  let queryText = 'SELECT * from "tasks_list" ORDER BY "isDone", "id" DESC; ';
 
   pool
     .query(queryText)
     .then((result) => {
-      // console.log("results from db", result);
+      console.log("results from db", result.rows);
       res.send(result.rows);
     })
     .catch((error) => {

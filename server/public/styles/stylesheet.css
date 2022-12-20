@@ -28,7 +28,7 @@ div {
   font-size: 40px;
 }
 
-#addTask {
+.addTask {
   display: inline-block;
   padding: 8px;
   font-size: 20px;
@@ -52,7 +52,7 @@ button:active {
   transform: translateY(4px);
 }
 
-#completeTask {
+.completeTask {
   background-color: #6cc85c;
   color: #fff;
   display: inline-block;
@@ -66,7 +66,7 @@ button:active {
   border-radius: 15px;
 }
 
-#deleteTask {
+.deleteTask {
   background-color: #ec5842;
   color: #fff;
   display: inline-block;
@@ -78,4 +78,8 @@ button:active {
   outline: none;
   border: none;
   border-radius: 15px;
+}
+
+.completed {
+  text-decoration: line-through;
 }
