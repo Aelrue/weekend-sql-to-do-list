@@ -4,6 +4,7 @@ function onReady() {
   console.log("client sourced!");
   $(".addTask").on("click", addTask);
   $(document).on("click", ".deleteTask", deleteTask);
+  $(document).on("click", ".completeTask", checkOff);
 
   getList();
 }
@@ -63,6 +64,17 @@ function getList() {
 // Use "PUT" request to update resource (check it off)
 function checkOff() {
   console.log("putList firing off");
+  const id = $(this).parent().parent().data("id");
+  $.ajax({
+    type: "PUT",
+    url: `/list/${id}`,
+  })
+    .then(function () {
+      getList();
+    })
+    .catch(function (error) {
+      console.log("error with check off", error);
+    });
 }
 
 // Delete resource ("DELETE")

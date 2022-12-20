@@ -54,4 +54,9 @@ router.delete("/:id", (req, res) => {
     });
 });
 
+router.put("/:id", (req, res) => {
+  console.log("hello from put request");
+  res.sendStatus(202);
+});
+
 module.exports = router;

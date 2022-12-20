@@ -19,9 +19,9 @@
 - [x] Add database.sql file to file structure
 - [x] Create inputs for user to enter a task
   - [x] add a submit button
-- [] Submit should post the task to the server and add it to the database
-- [] Render list on the DOM
-- [] Add done and delete buttons to each list item
+- [x] Submit should post the task to the server and add it to the database
+- [x] Correctly render list on the DOM
+- [x] Add done and delete buttons to each list item
 - [] Clicking 'done' should update in db and show completed on DOM (i.e strike through, greyed out, whatnot) hint: look at text-decoration
 - [] Clicking 'delete' should remove it from the db and DOM
 - [] Style it uppp
