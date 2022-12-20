@@ -42,10 +42,6 @@ div {
   border-radius: 15px;
 }
 
-button:hover {
-  background-color: #3e8e41;
-}
-
 button:active {
   background-color: #3e8e41;
 
@@ -66,6 +62,10 @@ button:active {
   border-radius: 15px;
 }
 
+.completeTask:hover {
+  background-color: #3e8e41;
+}
+
 .deleteTask {
   background-color: #ec5842;
   color: #fff;
@@ -78,6 +78,9 @@ button:active {
   outline: none;
   border: none;
   border-radius: 15px;
+}
+.deleteTask:hover {
+  background-color: #c93d0e;
 }
 
 .completed {

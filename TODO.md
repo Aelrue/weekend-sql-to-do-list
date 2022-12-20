@@ -22,6 +22,6 @@
 - [x] Submit should post the task to the server and add it to the database
 - [x] Correctly render list on the DOM
 - [x] Add done and delete buttons to each list item
-- [] Clicking 'done' should update in db and show completed on DOM (i.e strike through, greyed out, whatnot) hint: look at text-decoration
-- [] Clicking 'delete' should remove it from the db and DOM
-- [] Style it uppp
+- [x] Clicking 'done' should update in db and show completed on DOM (i.e strike through, greyed out, whatnot) hint: look at text-decoration
+- [x] Clicking 'delete' should remove it from the db and DOM
+- [x] Style it uppp
