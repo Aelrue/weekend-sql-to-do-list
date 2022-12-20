@@ -20,6 +20,7 @@ router.get("/", (req, res) => {
     });
 });
 
+/*** Inserts new task into database ***/
 router.post("/", (req, res) => {
   // console.log("in .post");
   const newListItem = req.body;
@@ -56,7 +57,18 @@ router.delete("/:id", (req, res) => {
 
 router.put("/:id", (req, res) => {
   console.log("hello from put request");
-  res.sendStatus(202);
+  let queryText = `UPDATE "tasks_list" SET "isDone" = true WHERE id =${req.params.id}; `;
+  // res.sendStatus(202);
+  pool
+    .query(queryText)
+    .then((result) => {
+      console.log(result);
+      res.sendStatus(202);
+    })
+    .catch((error) => {
+      console.log("error making query", error);
+      res.sendStatus(500);
+    });
 });
 
 module.exports = router;
