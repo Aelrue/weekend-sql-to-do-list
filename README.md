@@ -1,9 +1,3 @@
-# Project Name
+This is a full stack application that acts as a to-do list. It allows a user to create a list of tasks, check tasks off their list, and delete them. Created tasks are stored in a database, as well as whether or not they have been completed. Deleting removes them from the database.
 
-[Project Instructions](./INSTRUCTIONS.md), this line may be removed once you have updated the README.md
-
-## Description
-
-Your project description goes here. What problem did you solve? How did you solve it?
-
-Additional README details can be found [here](https://github.com/PrimeAcademy/readme-template/blob/master/README.md).
+Application was built with: HTML/CSS, Javascript, NPM, Express, and jQuery
