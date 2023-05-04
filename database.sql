@@ -10,7 +10,7 @@ INSERT INTO "tasks_list"(tasks)
 VALUES ('Walk dog');
 
 DELETE FROM "tasks_list"
-WHERE "tasks" = 'Herro?' OR "tasks" = 'FUCK YEH' OR "tasks" = '';
+WHERE "tasks" = 'Herro?' OR "tasks" = '';
 
 
 UPDATE "tasks_list" SET "isDone" = 'true'
